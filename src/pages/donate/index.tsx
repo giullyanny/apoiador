@@ -21,17 +21,17 @@ interface DonateProps {
 export default function Donate({ user }: DonateProps) {
     const [vip, setVip] = useState(false)
 
-    
+
     async function handleSaveDonate() {
         await firebase.firestore().collection('users')
-        .doc(user.id).set({
-            donate: true,
-            lastDonate: new Date(),
-            image: user.image
-        })
-        .then(() => {
-            setVip(true)
-        })
+            .doc(user.id).set({
+                donate: true,
+                lastDonate: new Date(),
+                image: user.image
+            })
+            .then(() => {
+                setVip(true)
+            })
     }
 
     return (
@@ -62,9 +62,9 @@ export default function Donate({ user }: DonateProps) {
                             }]
                         })
                     }}
-                    onApprove={(data, actions) => {
-                        return actions.order?.capture().then(function (details) {
-                            handleSaveDonate()
+                    onApprove={async (data, actions) => {
+                        return actions.order?.capture().then(async function (details) {
+                            await handleSaveDonate()
                         })
                     }}
                 />
@@ -74,7 +74,10 @@ export default function Donate({ user }: DonateProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-    const session = await getSession({ req });
+    const session: any = await getSession({ req });
+
+    console.log(session)
+
     if (!session?.id) {
         return {
             redirect: {
