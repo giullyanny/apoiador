@@ -6,6 +6,7 @@ import styles from './detalhe.module.scss'
 import firebase from '../../services/firebase-connection'
 import Head from "next/head"
 import { FiCalendar } from "react-icons/fi"
+import { ParsedUrlQuery } from "querystring"
 
 type Task = {
     id: string,
@@ -18,10 +19,6 @@ type Task = {
 
 interface TaskProps {
     data: string
-}
-
-interface Params {
-    id: string
 }
 
 export default function Task({ data }: TaskProps) {
@@ -46,9 +43,9 @@ export default function Task({ data }: TaskProps) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }: Params) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    const { id }: string = params
+    const { id }: string = params as ParsedUrlQuery
     const session = await getSession({ req });
 
     if (!session?.vip) {
