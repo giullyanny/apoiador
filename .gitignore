@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+*.eslintrc.json
+*.prettierrc.js
 
 # testing
 /coverage
@@ -34,5 +36,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.eslintrc.json
-.prettierrc.js
