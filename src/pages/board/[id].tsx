@@ -43,8 +43,8 @@ export default function Task({ data }: TaskProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-
-    const { id } = params;
+    
+    const { id }: string = params;
     const session = await getSession({ req });
 
     if (!session?.vip) {
