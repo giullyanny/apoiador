@@ -20,7 +20,7 @@ interface TaskProps {
     data: string
 }
 
-export default function Task({ data }: Task) {
+export default function Task({ data }: TaskProps) {
     const task = JSON.parse(data) as Task
 
     return (

@@ -187,7 +187,6 @@ export default function Board({ user, data }: BoardProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
-  console.log(session)
   
   if (!session?.id) {
     return {
