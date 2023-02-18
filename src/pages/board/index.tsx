@@ -14,7 +14,7 @@ import Link from 'next/link'
 
 type TaskList = {
   id: string,
-  created: string | Date,
+  created: Date,
   createdFormat?: string,
   task: string,
   userId: string,
@@ -202,12 +202,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     .orderBy('created', 'asc').get();
 
   const data = JSON.stringify(tasks.docs.map(t => {
+    console.log(t.data())
     return {
       id: t.id,
       createdFormat: format(t.data().created.toDate(), 'dd MMMM yyyy'),
       ...t.data()
     }
   }));
+
 
   const user = {
     nome: session?.user?.name,

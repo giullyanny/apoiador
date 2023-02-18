@@ -10,7 +10,7 @@ import { ParsedUrlQuery } from "querystring"
 
 type Task = {
     id: string,
-    created: string | Date,
+    created: Date,
     createdFormat?: string,
     task: string,
     userId: string,
@@ -61,20 +61,20 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
         .doc(String(id))
         .get()
         .then((snapshot) => {
-            const t: Task = snapshot.data() as Task;
-
+            
             const data = {
                 id: snapshot.id,
-                created: t.created,
-                createdFormat: format(t.created?.toDate(), 'dd MMMM yyyy'),
-                userId: t.userId,
-                userName: t.userName,
-                task: t.task,
+                created: snapshot.data().created,
+                createdFormat: format(snapshot.data().created.toDate(), 'dd MMMM yyyy'),
+                userId: snapshot.data().userId,
+                userName: snapshot.data().userName,
+                task: snapshot.data().task,
             }
 
             return JSON.stringify(data);
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log("ERROR: " + error)
             return {};
         });
 
