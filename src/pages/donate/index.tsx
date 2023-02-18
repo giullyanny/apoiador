@@ -5,6 +5,8 @@ import styles from './style.module.scss'
 import { PayPalButtons } from '@paypal/react-paypal-js'
 import firebase from '../../services/firebase-connection'
 import { useState } from 'react';
+import Image from 'next/image';
+import rocket from '../../../public/images/rocket.svg'
 
 //cliente id: AYN7TWpomNsrWmP_f0Yw5cJtaK5wXPGzVVSxGoSpRfb0kFTuyQ89d3WkUADm2zbOyqSb4kmV_075PF0S
 //<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
@@ -40,7 +42,7 @@ export default function Donate({ user }: DonateProps) {
                 <title>Ajude a plataforma board ficar online!</title>
             </Head>
             <main className={styles.container}>
-                <img src='/images/rocket.svg' alt='Seja um apoiador' />
+                <Image src={rocket} alt='Seja um apoiador' />
 
                 {(vip) && (
                     <div className={styles.vip}>

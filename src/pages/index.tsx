@@ -3,6 +3,9 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import styles from '/src/style/home.module.scss'
 import { useState } from 'react'
+import boardUser from '../../public/images/board-user.svg'
+import Image from 'next/image'
+
 
 interface HomeProps {
   data: string;
@@ -24,7 +27,7 @@ export default function Home({ data }: any) {
         <title>Board - Organizador de tarefas</title>
       </Head>
       <main className={styles.contentContainer}>
-        <img src="/images/board-user.svg" alt="Ferramenta Board" />
+        <Image src={boardUser} alt="Ferramenta Board" />
         <section className={styles.callToAction}>
           <h1>Uma ferramenta para seu dia a dia Escreva, planeje e organize-se...</h1>
           <p><span>100% Gratuita</span> e online</p>
