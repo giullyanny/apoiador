@@ -45,7 +45,7 @@ export default function Task({ data }: TaskProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
 
-    const { id }: string = params as ParsedUrlQuery
+    const id = (params as ParsedUrlQuery).id
     const session = await getSession({ req });
 
     if (!session?.vip) {
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
     }
 
     const data = await firebase.firestore().collection('tarefas')
-        .doc(id)
+        .doc(String(id))
         .get()
         .then((snapshot) => {
             const t: Task = snapshot.data();
