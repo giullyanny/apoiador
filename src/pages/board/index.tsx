@@ -202,7 +202,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     .orderBy('created', 'asc').get();
 
   const data = JSON.stringify(tasks.docs.map(t => {
-    console.log(t.data())
     return {
       id: t.id,
       createdFormat: format(t.data().created.toDate(), 'dd MMMM yyyy'),
