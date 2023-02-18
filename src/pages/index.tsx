@@ -15,7 +15,7 @@ type Data = {
   image: string
 }
 
-export default function Home({ data }) {
+export default function Home({ data }: any) {
   const [donaters, setDonaters] = useState<Data[]>(JSON.parse(data));
 
   return (
