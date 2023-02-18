@@ -14,7 +14,7 @@ interface DonateProps {
     user: {
         nome: string,
         id: string,
-        image: stringy,
+        image: string,
     }
 }
 
